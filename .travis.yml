@@ -14,9 +14,9 @@ install:
   - pip install -r requirements_dev.txt
 
 script:
-  - flake8 myaioapp examples tests setup.py
-  - bandit -r ./myaioapp ./examples setup.py
-  - mypy myaioapp examples setup.py --ignore-missing-imports
+  - flake8 myaioapp tests
+  - bandit -r ./myaioapp
+  - mypy myaioapp --ignore-missing-imports
   - py.test -v --cov-report term --cov-report html --cov myaioapp ./tests
 
 after_success:
