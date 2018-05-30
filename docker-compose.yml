@@ -3,36 +3,36 @@ services:
   app:
     build: .
     ports:
-      - '8080:80'
+      - '127.0.0.1:8080:80'
     environment:
-      - HTTP_HOST=127.0.0.1
+      - HTTP_HOST=0.0.0.0
       - HTTP_PORT=80
       - DB_URL=postgres://postgres@postgres:5432/postgres
-      - RABBIT_URL=amqp://guest:guest@localhost:5672/
+      - RABBIT_URL=amqp://guest:guest@rabbit:5672/
     restart: on-failure
   rabbit:
-    image: rabbitmq
+    image: rabbitmq:latest
     ports:
-      - '35672:5672'
+      - '127.0.0.1:35672:5672'
     restart: on-failure
     #logging:
     #  driver: none
   postgres:
-    image: postgres
+    image: postgres:latest
     ports:
-      - '35432:5432'
+      - '127.0.0.1:35432:5432'
     restart: on-failure
     #logging:
     #  driver: none
   tracer:
-    image: jaegertracing/all-in-one
+    image: jaegertracing/all-in-one:latest
     ports:
       - "127.0.0.1:39411:9411"
       - "127.0.0.1:36686:16686"
     environment:
       - COLLECTOR_ZIPKIN_HTTP_PORT=9411
-    logging:
-      driver: none
+    #logging:
+    #  driver: none
   influxdb:
     image: influxdb:latest
     environment:
@@ -53,7 +53,7 @@ services:
     #logging:
     #  driver: none
   grafana:
-    # URL: http://localhost:10207/login
+    # URL: http://127.0.0.1:10207/login
     # username: admin
     # password: admin
     #
@@ -65,7 +65,7 @@ services:
     #     Password: telegraf
     image: grafana/grafana:latest
     ports:
-      - "33000:3000"
+      - "127.0.0.1:33000:3000"
     environment:
       - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
     restart: on-failure
