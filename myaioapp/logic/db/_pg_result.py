@@ -15,7 +15,7 @@ class TracerConfig(PostgresTracerConfig):
 
 
 class Result:
-    __sql__: str = None
+    __sql__: str
 
     def __init__(self, **kwargs) -> None:
         self._vals = kwargs

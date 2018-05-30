@@ -31,8 +31,12 @@ class MainHttpHandler(Handler):
         if request.query.get('error'):
             await db.UpdateSomeTable.exec(ctx, self.app.db, 1)
 
+        if self.app.rmq_consumer.queue is None:
+            raise web.HTTPInternalServerError()
+
         res1 = await db.GetWeek.exec(ctx, self.app.db)
         res2 = await db.GetDate.exec(ctx, self.app.db)
+
         await self.app.rmq_publisher.publish(ctx, b'test message', '',
                                              self.app.rmq_consumer.queue)
         return web.Response(
