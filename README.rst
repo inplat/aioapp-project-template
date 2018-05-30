@@ -1,6 +1,6 @@
-=======
-myioapp
-=======
+========
+myaioapp
+========
 
 Example service with aioapp engine
 
