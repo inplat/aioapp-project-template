@@ -1,11 +1,9 @@
-import copy
 import logging
 import sys
 import os
 import pytest
 import mock
 import myaioapp
-from aioapp.config import ConfigError
 from myaioapp.cli import parse_argv, setup_logging, Args, main
 
 

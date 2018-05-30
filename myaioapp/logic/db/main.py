@@ -21,7 +21,7 @@ class GetWeek(Result):
     __sql__ = """\
         SELECT
             date
-        FROM 
+        FROM
             generate_series(
                 NOW() - '6day'::interval,
                 NOW(),

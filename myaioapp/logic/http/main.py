@@ -1,7 +1,6 @@
 from aiohttp import web
-import traceback
 import myaioapp.app  # noqa
-from aioapp.http import Handler, Server
+from aioapp.http import Handler
 from aioapp.tracer import Span
 from .. import db
 

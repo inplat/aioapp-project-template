@@ -199,10 +199,10 @@ async def tracer_server(loop, tracer_override_addr):
         return
 
     def tracer_handle(request):
-        return aiohttp.web.Response(text='', status=201)
+        return web.Response(text='', status=201)
 
     servers = []
-    app = aiohttp.web.Application()
+    app = web.Application()
     app.router.add_post('/api/v2/spans', tracer_handle)
     server = TestServer(app, port=None)
     await server.start_server(loop=loop)

@@ -1,5 +1,4 @@
 from typing import Any, Type, Union, Tuple, Optional
-import traceback
 import asyncpg.protocol
 from aioapp.tracer import Span
 from aioapp.db.postgres import Postgres, Connection, PostgresTracerConfig

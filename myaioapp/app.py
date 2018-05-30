@@ -1,6 +1,5 @@
-from datetime import timedelta
 import asyncio
-from typing import Optional, List, Union
+from typing import Optional
 import aioapp
 from myaioapp.config import Config
 from myaioapp.logic.http import MainHttpHandler

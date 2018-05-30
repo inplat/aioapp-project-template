@@ -1,7 +1,7 @@
 import asyncio
 from typing import Optional
 from aioapp.tracer import Span
-from aioapp.amqp import Amqp, Channel, AmqpTracerConfig
+from aioapp.amqp import Channel, AmqpTracerConfig
 from aioamqp.channel import Channel as AmqpChannel
 from aioamqp.properties import Properties as AmqpProperties
 from aioamqp.envelope import Envelope as AmqpEnvelope
