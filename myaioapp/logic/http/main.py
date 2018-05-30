@@ -31,7 +31,7 @@ class MainHttpHandler(Handler):
         if request.query.get('error'):
             await db.UpdateSomeTable.exec(ctx, self.app.db, 1)
 
-        if self.app.rmq_consumer.queue is None:
+        if self.app.rmq_consumer.queue is None:  # pragma: nocover
             raise web.HTTPInternalServerError()
 
         res1 = await db.GetWeek.exec(ctx, self.app.db)
