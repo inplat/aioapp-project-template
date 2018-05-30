@@ -1,0 +1,4 @@
+[run]
+branch = True
+source = myaioapp
+omit = site-packages
