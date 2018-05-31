@@ -38,7 +38,8 @@ class MainHttpHandler(Handler):
         res2 = await db.GetDate.exec(ctx, self.app.db)
 
         await self.app.rmq_publisher.publish(ctx, b'test message', '',
-                                             self.app.rmq_consumer.queue)
+                                             self.app.rmq_consumer.queue,
+                                             propagate_trace=False)
         return web.Response(
             text='Hello, world!\n'
                  'Now: %s\n'
