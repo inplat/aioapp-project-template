@@ -13,16 +13,16 @@ class TracerConfig(AmqpTracerConfig):
         super(TracerConfig, self).__init__()
         self.channel = channel
 
-    def on_ack_start(self, context_span: Span,
+    def on_ack_start(self, ctx: Span,
                      channel: AmqpChannel,
                      delivery_tag: str, multiple: bool):
-        super(TracerConfig, self).on_ack_start(context_span, channel,
+        super(TracerConfig, self).on_ack_start(ctx, channel,
                                                delivery_tag, multiple)
 
-    # def on_nack_start(self, context_span: Span,
+    # def on_nack_start(self, ctx: Span,
     #                   channel: AmqpChannel,
     #                   delivery_tag: str, multiple: bool):
-    #     super(TracerConfig, self).on_nack_start(context_span, channel,
+    #     super(TracerConfig, self).on_nack_start(ctx, channel,
     #                                             delivery_tag, multiple)
 
 
@@ -37,12 +37,12 @@ class AmqpConsumerChannel(Channel):
         self.queue = queue['queue']
         await self.consume(self.msg, self.queue)
 
-    async def msg(self, context_span: Span,
+    async def msg(self, ctx: Span,
                   channel: AmqpChannel,
                   body: bytes,
                   envelope: AmqpEnvelope,
                   properties: AmqpProperties) -> None:
-        await self.ack(context_span, envelope.delivery_tag,
+        await self.ack(ctx, envelope.delivery_tag,
                        tracer_config=TracerConfig(self))
         await asyncio.sleep(1, loop=self.amqp.loop)
         self.message_counter += 1
