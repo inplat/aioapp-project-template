@@ -1,5 +1,7 @@
 -r requirements.txt
 
+requests==2.18.4
+
 mock==2.0.0
 pytest-docker-compose==1.0.1
 pytest==3.6.1
