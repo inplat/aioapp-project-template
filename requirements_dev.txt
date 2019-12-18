@@ -11,7 +11,7 @@ pytest-cov==2.6.0
 coverage==4.5.1
 
 flake8==3.5.0
-mypy==0.630
+mypy==0.760
 bandit==1.4.0
 Sphinx==1.8.0
 sphinx-rtd-theme==0.4.1
